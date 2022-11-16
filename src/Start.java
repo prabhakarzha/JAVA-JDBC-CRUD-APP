@@ -1,4 +1,3 @@
-import java.util.*;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,18 +31,38 @@ public class Start {
 
 				//create Student object to store student
 				Student st = new Student(name,phone,city);
+				
+				boolean answer= StudentDao.insertStudentToDB(st);
+
+				if(answer){
+					System.out.println("Student is added successfully...");
+
+				}else{
+					System.out.println("something wrong happened....");
+				}
 				System.out.println(st);
 
 			}
 			else if(c==2)
 			{
-				//delete student
+				// delete student
+				System.out.println("Enter student id to delete..");
+				int userId = Integer.parseInt(br.readLine());
+			    boolean f =	StudentDao.deleteStudent(userId);
+
+				if(f)
+				{
+					System.out.println("Deleted..");
+
+				}else{
+					System.out.println("Something went wrong.....");
+				}
 				
 			}
 			else if(c==3)
 			{
-				//display student
-				
+				// display student
+				StudentDao.showAllStudent();
 			}
 			else if(c==4)
 			{
